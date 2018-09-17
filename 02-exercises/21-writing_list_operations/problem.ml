@@ -1,4 +1,5 @@
 open! Base
+open! Fn
 (* It is common in all programming languages to want to store and operate on
    collections of the same data type. OCaml natively supports linked lists,
    which have type 'a list.
@@ -57,13 +58,26 @@ module My_list : sig
 end = struct
 
   (* TODO *)
-  let map f lst = failwith "For you to implement"
+  let map f lst =
+    let m_cons = flip List.cons in
+    List.fold_left 
+      ~init:[]
+      ~f:(fun accum v -> v |> f |> (m_cons accum))
+      (List.rev lst)
 
   (* TODO *)
-  let iter f lst = failwith "For you to implement"
+  let iter f lst = 
+    List.fold_left
+      ~init: ()
+      ~f: (fun _ v -> f v)
+      lst
 
   (* TODO *)
-  let filter f lst = failwith "For you to implement"
+  let filter f lst = 
+    List.fold_left
+      ~init: []
+      ~f: (fun accum v -> if f v then v :: accum else accum)
+      (List.rev lst)
 
 end
 
@@ -110,7 +124,7 @@ let () = assert (List.mem ~equal:Int.equal [1;2;3] 3)
 
    val sort: compare:('a -> 'a -> int) -> 'a list -> 'a list
 *)
-let () = assert ([%compare.equal: int list] (List.sort ~cmp:(fun x y -> x - y) [3;1;2]) [1;2;3])
+let () = assert ([%compare.equal: int list] (List.sort ~compare:(fun x y -> x - y) [3;1;2]) [1;2;3])
 
 (*module My_list : sig
   val map : ('a -> 'b) -> 'a list -> 'b list

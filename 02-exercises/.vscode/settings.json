@@ -1,0 +1,8 @@
+{
+    "reason.path.bsb": "bsb",
+    "reason.codelens.enabled": true,
+    "reason.diagnostics.tools": [
+        "merlin",
+        "bsb"
+    ]
+}

@@ -51,7 +51,7 @@ let () =
 (* Exercise: implement the value [my_new_ints], which is obtained by adding 1 to each
    element of [my_ints] *)
 let my_new_ints ints =
-  failwith "For you to implement"
+  List.map ~f:(fun a -> a + 1) ints
 
 (* If the function you want to perform on each element of your list is one that returns
    [unit], meaning that all it does is perform some side-effect (like [printf]),
@@ -93,7 +93,10 @@ let () = assert (sum_of_my_ints my_ints = 15)
    even *)
 
 let num_even_ints ints =
-  failwith "For you to implement"
+  List.fold_left 
+    ~f:(fun count a -> if a % 2 = 0 then count + 1 else count)
+    ~init:0
+    ints
 
 (* Here's one more example of a useful list function: [List.find]:
 

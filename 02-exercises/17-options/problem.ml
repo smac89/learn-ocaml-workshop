@@ -30,7 +30,9 @@ let%test _ =
    and returns an int option. It should return None if [divisor = 0], and
    otherwise returns [Some x] where [x] is the division result *)
 let safe_divide ~dividend ~divisor =
-  failwith "For you to implement"
+  match divisor with
+  | 0 -> None
+  | _ -> Some (dividend / divisor)
 
 let%test "Testing safe_divide..." =
   match (safe_divide ~dividend:3 ~divisor:2) with
@@ -41,5 +43,3 @@ let%test "Testing safe_divide..." =
   match safe_divide ~dividend:3 ~divisor:0 with
   | None -> true
   | _    -> false
-
-

@@ -67,7 +67,9 @@ let () =
 *)
 (* TODO *)
 let apply_if_nonzero f i =
-  failwith "For you to implement"
+  match i with
+  | 0 -> 0
+  | _ -> f i
 
 let%test "Testing apply_if_nonzero..." =
   Int.(=) 0 (apply_if_nonzero (fun x -> 10 / x) 0)

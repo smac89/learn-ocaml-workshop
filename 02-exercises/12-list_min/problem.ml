@@ -9,7 +9,9 @@ let rec largest xs =
 (* Let's write a function to find the smallest element: Hint: the opposite of
    [Float.neg_infinity] is [Float.infinity]. *)
 let rec smallest xs =
-  failwith "For you to implement"
+  match xs with
+  | [] -> Float.infinity
+  | x :: rest -> Float.min x (smallest rest)
 
 let%test "Testing smallest..." =
   Float.equal Float.infinity (smallest [])

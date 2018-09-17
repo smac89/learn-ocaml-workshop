@@ -80,6 +80,9 @@ module Fraction : sig
 
   (* TODO: Add signatures for the create and value functions to expose them in
      the Fraction module. *)
+  val create: numerator:int -> denominator:int -> t
+
+  val value: t -> float
 
 end = struct
 

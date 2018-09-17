@@ -19,7 +19,17 @@ let () =
    and maximum values seen so far.
 *)
 let min_and_max lst =
-  failwith "For you to implement"
+  match lst with
+  | [] -> failwith "Cannot find min and max of empty list"
+  | v::[] -> (v,v)
+  | a::b::rest -> 
+    let mmax = ref (max a b)
+    and mmin = ref (min a b) in
+      List.iter ~f:(fun v -> 
+                      if v > !mmax then mmax := v;
+                      if v < !mmin then mmin := v)
+                rest;
+      (!mmin, !mmax)
 
 let%test "Testing min_and_max..." =
   [%compare.equal: int*int] (min_and_max [5;9;2;4;3]) (2,9) 

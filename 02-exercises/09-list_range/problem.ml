@@ -29,8 +29,9 @@ let () =
 
    val range : int -> int -> int list
 *)
-let range from to_ =
-  failwith "For you to implement"
+let rec range from to_ =
+  if from >= to_ then []
+  else from :: range (from + 1) to_
 
 (* Here's a different way of getting the [equal] function for a type [t]:
 

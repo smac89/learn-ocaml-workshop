@@ -12,7 +12,9 @@ let is_superman x =
 (* Let's use our own pattern matching. Write a function that returns
    whether x is non zero by matching on x *)
 let non_zero x =
-  failwith "For you to implement"
+  match x with
+  | 0 -> false
+  | _ -> true
 
 let%test "Testing non_zero..." =
   Bool.(=) false (non_zero 0)
